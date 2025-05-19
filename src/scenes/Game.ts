@@ -320,26 +320,6 @@ export default class Game extends Scene {
     this.playPhase(this.currentPhase, options)
   }
 
-  drawDashedLine(graphics, x1, y1, x2, y2, dashLength, gapLength) {
-    const totalLength = Phaser.Math.Distance.Between(x1, y1, x2, y2);
-    const dx = (x2 - x1) / totalLength;
-    const dy = (y2 - y1) / totalLength;
-
-    let currentLength = 0;
-    while (currentLength < totalLength) {
-      const nextLength = Math.min(currentLength + dashLength, totalLength);
-      const startX = x1 + dx * currentLength;
-      const startY = y1 + dy * currentLength;
-      const endX = x1 + dx * nextLength;
-      const endY = y1 + dy * nextLength;
-
-      graphics.moveTo(startX, startY);
-      graphics.lineTo(endX, endY);
-      currentLength += dashLength + gapLength;
-    }
-  }
-
-
 
   async desenhaPoligonoDestino(phase: MazePhase) {
     const graphics = this.add.graphics();
@@ -455,7 +435,6 @@ export default class Game extends Scene {
       //desenha os poligonos
       this.desenhaPoligonos(this.currentPhase);
 
-      //this.desenhaPoligonoEncaixe(this.currentPhase);
     }
   }
 
