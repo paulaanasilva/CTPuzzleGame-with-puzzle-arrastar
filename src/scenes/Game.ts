@@ -320,6 +320,19 @@ export default class Game extends Scene {
     this.playPhase(this.currentPhase, options)
   }
 
+  escreveEnunciadoJogo() {
+    if (this.currentPhase && this.currentPhase.enunciadoJogo) {
+      const text = this.add.text(95,30, this.currentPhase.enunciadoJogo, {
+        fontFamily: 'Dyuthi, sans-serif',
+        fontSize: '20px',
+        color: '#000000',
+        align: 'center',
+        wordWrap: { width: this.grid.width * 0.9 }
+      });
+    }
+  }
+    
+
 
   async desenhaPoligonoDestino(phase: MazePhase) {
     const graphics = this.add.graphics();
@@ -431,6 +444,8 @@ export default class Game extends Scene {
       this.updateLabelCurrentPhase();
 
       this.currentPhase.setupMatrixAndTutorials()
+
+      this.escreveEnunciadoJogo();
 
       //remove os poligonos
       this.removePoligonos();
