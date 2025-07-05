@@ -373,7 +373,13 @@ export default class Game extends Scene {
           const centerY = points.reduce((sum, point) => sum + point.y, 0) / points.length;
 
           positions.forEach(position => {
-            const polygon = this.add.polygon(position.x + centerX, position.y + centerY, points, color).setOrigin(0.5, 0.5);
+            const offset = i * 5;
+            const polygon = this.add.polygon(
+              position.x + centerX + offset,
+              position.y + centerY + offset,
+              points,
+              color
+            ).setOrigin(0.5, 0.5);
             
 
             InputHandler.enableDrag(polygon);
